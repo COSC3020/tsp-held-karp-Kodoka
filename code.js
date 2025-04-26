@@ -47,7 +47,7 @@ function tspRecursion(currentCity, unvisitedCities)
     // Try every remaining unvisited city as the next potential city
     // on our route.
     var bestDistance = Infinity;
-    for(var nextCandidate = 0; nextCandidate < remaining.length; nextCandidate++)
+    for(var nextCandidate = 0; nextCandidate < unvisitedCities.length; nextCandidate++)
     {
         var nextCity = unvisitedCities[nextCandidate];
 
