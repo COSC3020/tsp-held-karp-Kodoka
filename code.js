@@ -5,6 +5,12 @@ function tsp_hk(distance_matrix)
     // Start at infinity for minimumDistance, and reduce as we go.
     var minimumDistance = Infinity;
 
+    // If 1 city, no need to travel at all.
+    if(numCities == 1)
+    {
+        return 0;
+    }
+
     // Fill our array with the index of each city.
     for(var i = 0; i < numCities; i++)
     {
