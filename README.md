@@ -46,3 +46,27 @@ Test your new function; I've provided some basic testing code in `code.test.js`.
 What is the worst-case asymptotic time complexity of your implementation? What
 is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
+
+## My Runtime Complexity
+
+First my algorithm selects each of $n$ input cities as the origin for our
+prospective route, then recursively it tries each of the remaining options,
+which each, in turn, tries each of the remaining options from their own pool
+of candidates, during each recursive call until no unvisited cities remain, at
+which point it returns the best, shortest, path. Thus the worst case runtime
+complexity is $\Theta(n!)$.  
+
+## My Memory Complexity
+
+First we start with an array composed of all of the input $n$ cities, then if
+$n > 1$, we'll slice and splice, resulting in an array of $n - 1$ cities, at
+which point recursive calls start. Each $n - 2$ of these calls result in
+further slice and splice arrays one element smaller than the calling array,
+until only one unvisited city remains. Summing up to $\frac{n^2+n}{2}$. Not
+accounting for constants, the worst case memory complexity is $\Theta(n^2)$.  
+
+## Sources
+
+## Plagiarism Notice
+
+I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
