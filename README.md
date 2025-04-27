@@ -52,7 +52,7 @@ reasoning, to this markdown file.
 First my algorithm selects each of $n$ input cities as the origin for our
 prospective route, then recursively it tries each of the remaining options,
 which each, in turn, tries each of the remaining options from their own pool
-of candidates, during each recursive call until no unvisited cities remain, at
+of candidates, during each recursive call, until no unvisited cities remain, at
 which point it returns the best, shortest, path. Thus the worst case runtime
 complexity is $\Theta(n!)$.  
 
@@ -67,6 +67,10 @@ to $\frac{n^2+n}{2}$. Not accounting for constants, the worst case memory
 complexity is $\Theta(n^2)$.  
 
 ## Sources
+
+For a general idea of TSP code layout:  
+
+https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programming/#  
 
 ## Plagiarism Notice
 
