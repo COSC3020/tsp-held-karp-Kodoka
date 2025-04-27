@@ -39,41 +39,41 @@ function tsp_hk(distance_matrix)
     }
     
     return minimumDistance;
-}
 
-function tspRecursion(currentCity, unvisitedCities)
-{
-    // Base case, when 1 city remains, that's the only option,
-    // return distance from current city to the remaining unvisited.
-    if(unvisitedCities.length == 1)
+    function tspRecursion(currentCity, unvisitedCities)
     {
-        return distance_matrix[currentCity][unvisitedCities[0]];
-    }
-
-    // Try every remaining unvisited city as the next potential city
-    // on our route.
-    var bestDistance = Infinity;
-    for(var nextCandidate = 0; nextCandidate < unvisitedCities.length; nextCandidate++)
-    {
-        var nextCity = unvisitedCities[nextCandidate];
-
-        // Duplicate unvisitedCities...
-        var newUnvisited = unvisitedCities.slice();
-        // Then remove the next candidate for thenext recusrive call.
-        newUnvisited.splice(nextCandidate, 1);
-
-        // nextDistance is the distance from the current city to the
-        // next, plus next through the new remaining unvisited.
-        var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newUnvisited);
-
-        // If the nextDistance provides a better optoin than our
-        // current bestDistance, update bestDistance to our shortest
-        // option.
-        if(nextDistance < bestDistance)
+        // Base case, when 1 city remains, that's the only option,
+        // return distance from current city to the remaining unvisited.
+        if(unvisitedCities.length == 1)
         {
-            bestDistance = nextDistance;
+            return distance_matrix[currentCity][unvisitedCities[0]];
         }
-    }
 
-    return bestDistance;
+        // Try every remaining unvisited city as the next potential city
+        // on our route.
+        var bestDistance = Infinity;
+        for(var nextCandidate = 0; nextCandidate < unvisitedCities.length; nextCandidate++)
+        {
+            var nextCity = unvisitedCities[nextCandidate];
+
+            // Duplicate unvisitedCities...
+            var newUnvisited = unvisitedCities.slice();
+            // Then remove the next candidate for thenext recusrive call.
+            newUnvisited.splice(nextCandidate, 1);
+
+            // nextDistance is the distance from the current city to the
+            // next, plus next through the new remaining unvisited.
+            var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newUnvisited);
+
+            // If the nextDistance provides a better optoin than our
+            // current bestDistance, update bestDistance to our shortest
+            // option.
+            if(nextDistance < bestDistance)
+            {
+                bestDistance = nextDistance;
+            }
+        }
+
+        return bestDistance;
+    }
 }
