@@ -14,7 +14,7 @@ function tsp_hk(distance_matrix)
     // Try each city as our origin.
     for(var originIndex = 0; originIndex < allCities.length; originIndex++)
     {
-        var originCity = allCities[i];
+        var originCity = allCities[originIndex];
         // Duplicate allCities...
         var unvisited = allCities.slice();
         // Then remove the origin city from the unvisited city pool.
@@ -54,11 +54,11 @@ function tspRecursion(currentCity, unvisitedCities)
         // Duplicate unvisitedCities...
         var newUnvisited = unvisitedCities.slice();
         // Then remove the next candidate for thenext recusrive call.
-        newUnvisited.splice(nextCity, 1);
+        newUnvisited.splice(nextCandidate, 1);
 
         // nextDistance is the distance from the current city to the
         // next, plus next through the new remaining unvisited.
-        var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newRemaining);
+        var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newUnvisited);
 
         // If the nextDistance provides a better optoin than our
         // current bestDistance, update bestDistance to our shortest
@@ -67,7 +67,7 @@ function tspRecursion(currentCity, unvisitedCities)
         {
             bestDistance = nextDistance;
         }
-
-        return bestDistance;
     }
+
+    return bestDistance;
 }
