@@ -60,10 +60,11 @@ complexity is $\Theta(n!)$.
 
 First we start with an array composed of all of the input $n$ cities, then if
 $n > 1$, we'll slice and splice, resulting in an array of $n - 1$ cities, at
-which point recursive calls start. Each $n - 2$ of these calls result in
-further slice and splice arrays one element smaller than the calling array,
-until only one unvisited city remains. Summing up to $\frac{n^2+n}{2}$. Not
-accounting for constants, the worst case memory complexity is $\Theta(n^2)$.  
+which point recursive calls start. Producing an array of $n - 2$ elements,
+which in turn results in further slice and splice arrays one element smaller
+than the preceeding array, until only one unvisited city remains. Summing up
+to $\frac{n^2+n}{2}$. Not accounting for constants, the worst case memory
+complexity is $\Theta(n^2)$.  
 
 ## Sources
 
