@@ -74,7 +74,7 @@ cities, resuling in $n - 1$ recursive calls, and $n - 1$ arrays.
 As my algorithm eventually checks every permutation of cities, there will be
 $\Theta(n!)$ calls, that each results in a new array.
 
-As each of our $\Theta(n!) total calls results in an array of up to size
+As each of our $\Theta(n!)$ total calls results in an array of up to size
 $\Theta(n)$, the worst case memory complexity of my code is $\Theta(n! \cdot
 n$.
 
