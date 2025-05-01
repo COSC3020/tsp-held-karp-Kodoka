@@ -76,7 +76,7 @@ $\Theta(n!)$ calls, that each results in a new array.
 
 As each of our $\Theta(n!)$ total calls results in an array of up to size
 $\Theta(n)$, the worst case memory complexity of my code is $\Theta(n! \cdot
-n$.
+n)$.
 
 ## Sources
 
