@@ -58,19 +58,35 @@ complexity is $\Theta(n!)$.
 
 ## My Memory Complexity
 
-First we start with an array composed of all of the input $n$ cities, then if
-$n > 1$, we'll slice and splice, resulting in an array of $n - 1$ cities, at
-which point recursive calls start. Producing an array of $n - 2$ elements,
-which in turn results in further slice and splice arrays one element smaller
-than the preceeding array, until only one unvisited city remains. Summing up
-to $\frac{n^2+n}{2}$. Not accounting for constants, the worst case memory
-complexity is $\Theta(n^2)$.  
+For the purpose of analyzing memory complexity, $n$ represents the number of
+nodes or cities within the input array.
+
+To start each recursive call my algorithm performs removes one city from the
+pool of candidates for the next recursive call, meaning the maximum recursive
+depth for $n$ elements is $n - 1$ within the helper tspRecursion function.
+This results in a maximum call stack depth of $\Theta(n)$.  
+
+Within each recursive call, a new array, newUnvisited, is created by copying,
+slicing, and splicing the input array. At each recursion depth we get
+multiple arrays. For example, at the highest level, the code will try $n - 1$
+cities, resuling in $n - 1$ recursive calls, and $n - 1$ arrays.
+
+As my algorithm eventually checks every permutation of cities, there will be
+$\Theta(n!)$ calls, that each results in a new array.
+
+As each of our $\Theta(n!)$ total calls results in an array of up to size
+$\Theta(n)$, the worst case memory complexity of my code is $\Theta(n! \cdot
+n)$.
 
 ## Sources
 
 For a general idea of TSP code layout:  
 
 https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programming/#  
+
+I asked both you, and Carlie Niemitalo for advise on what I may be doing
+wrong in my memory complexity. Between your and her suggestions, I came
+to my updated solution.
 
 ## Plagiarism Notice
 
