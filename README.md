@@ -49,34 +49,7 @@ reasoning, to this markdown file.
 
 ## My Runtime Complexity
 
-First my algorithm selects each of $n$ input cities as the origin for our
-prospective route, then recursively it tries each of the remaining options,
-which each, in turn, tries each of the remaining options from their own pool
-of candidates, during each recursive call, until no unvisited cities remain, at
-which point it returns the best, shortest, path. Thus the worst case runtime
-complexity is $\Theta(n!)$.  
-
 ## My Memory Complexity
-
-For the purpose of analyzing memory complexity, $n$ represents the number of
-nodes or cities within the input array.
-
-To start each recursive call my algorithm performs removes one city from the
-pool of candidates for the next recursive call, meaning the maximum recursive
-depth for $n$ elements is $n - 1$ within the helper tspRecursion function.
-This results in a maximum call stack depth of $\Theta(n)$.  
-
-Within each recursive call, a new array, newUnvisited, is created by copying,
-slicing, and splicing the input array. At each recursion depth we get
-multiple arrays. For example, at the highest level, the code will try $n - 1$
-cities, resuling in $n - 1$ recursive calls, and $n - 1$ arrays.
-
-As my algorithm eventually checks every permutation of cities, there will be
-$\Theta(n!)$ calls, that each results in a new array.
-
-As each of our $\Theta(n!)$ total calls results in an array of up to size
-$\Theta(n)$, the worst case memory complexity of my code is $\Theta(n! \cdot
-n)$.
 
 ## Sources
 
@@ -87,6 +60,10 @@ https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programm
 I asked both you, and Carlie Niemitalo for advise on what I may be doing
 wrong in my memory complexity. Between your and her suggestions, I came
 to my updated solution.
+
+I used the following video to help with make my code dynamic via memoization:  
+
+https://www.youtube.com/watch?v=cY4HiiFHO1o  
 
 ## Plagiarism Notice
 
