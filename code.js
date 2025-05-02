@@ -4,6 +4,8 @@ function tsp_hk(distance_matrix)
     var allCities = [];
     // Start at infinity for minimumDistance, and reduce as we go.
     var minimumDistance = Infinity;
+    // Memoizatoin cache.
+    var memoStorage = {};
 
     // If 1 city, no need to travel at all.
     if(numCities == 1)
@@ -28,7 +30,7 @@ function tsp_hk(distance_matrix)
 
         // Start our recursive call to find the minimumDistance from
         // current origin city.
-        var traveledDistance = tspRecursion(originCity, unvisited);
+        var traveledDistance = tspRecursion(originCity, unvisited, memoStorage);
         
         // If the current origin city produces a lower distance than
         // our current minimumDistance, it replaces it.
@@ -40,13 +42,24 @@ function tsp_hk(distance_matrix)
     
     return minimumDistance;
 
-    function tspRecursion(currentCity, unvisitedCities)
+    function tspRecursion(currentCity, unvisitedCities, memo)
     {
+        // Generate key for this subpath.
+        var key = currentCity + "|" + unvisitedCities.join(",");
+
+        // If we've already solved this, return our cached result.
+        if(memo[key] != undefined)
+        {
+            return memo[key];
+        }
+
         // Base case, when 1 city remains, that's the only option,
         // return distance from current city to the remaining unvisited.
         if(unvisitedCities.length == 1)
         {
-            return distance_matrix[currentCity][unvisitedCities[0]];
+            // Distance from current city to last.
+            memo[key] = distance_matrix[currentCity][unvisitedCities[0]];
+            return memo[key];
         }
 
         // Try every remaining unvisited city as the next potential city
@@ -63,7 +76,7 @@ function tsp_hk(distance_matrix)
 
             // nextDistance is the distance from the current city to the
             // next, plus next through the new remaining unvisited.
-            var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newUnvisited);
+            var nextDistance = distance_matrix[currentCity][nextCity] + tspRecursion(nextCity, newUnvisited, memo);
 
             // If the nextDistance provides a better optoin than our
             // current bestDistance, update bestDistance to our shortest
@@ -74,6 +87,8 @@ function tsp_hk(distance_matrix)
             }
         }
 
+        // Cache and return best distance for this subpath.
+        memo[key] = bestDistance;
         return bestDistance;
     }
 }
