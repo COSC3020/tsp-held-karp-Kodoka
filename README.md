@@ -46,3 +46,50 @@ Test your new function; I've provided some basic testing code in `code.test.js`.
 What is the worst-case asymptotic time complexity of your implementation? What
 is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
+
+## My Runtime Complexity
+
+For my runtime complexity $n$ is representative of the number of cities in
+the input.  
+
+Alright, now that my code is dynamic via memoization, it functions a little
+different. To start I no longer truly explore all $n!$ permutations, instead
+I solve each subproblem in the form of current city, remaining set of
+cities once. Due to memoization we don't need to resolve any single
+subprolem more than once. There are approximately $2^n$ of those. For each
+subproblem I spend $\Theta(n)$ time looping over the up to $n$ subsequent
+cities, and a further $\Theta(n)$ time looking up and generating my
+memoization/distance key pairs, or $2n$. So my algorithm works through $2^n$
+subproblems, where a nested loop does $\Theta(n)$ work over $n$ choices,
+ultimately resulting in a run time complexity of $\Theta(n^2 \cdot 2^n)$  
+
+## My Memory Complexity
+
+Again, for my memory complexity, $n$ is still representative of the number of
+cities in the input.  
+
+I now use memoization for each subproblem of the form current city, remaining
+set of cities. For each potential pair, I cache one entry. Since the remaining
+set of cities constitutes all subsets of the other $n - 1$ cities, or $2^
+{n - 1}$ cities, and there are $n$ possible current cities, that results in as
+many as $n \cdot 2^{n - 1}$ total entries within memoStorage. As $n \cdot 2^
+{n - 1}$ is aymptotically comparable to $\Theta(n \cdot 2^n)$, the worst case
+memory complexity for my code is $\Theta(n \cdot 2^n)$.  
+
+## Sources
+
+For a general idea of TSP code layout:  
+
+https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programming/#  
+
+I asked both you, and Carlie Niemitalo for advise on what I may be doing
+wrong in my memory complexity. Between your and her suggestions, I came
+to my updated solution.
+
+I used the following video to help with make my code dynamic via memoization:  
+
+https://www.youtube.com/watch?v=cY4HiiFHO1o  
+
+## Plagiarism Notice
+
+I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
