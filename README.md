@@ -49,7 +49,31 @@ reasoning, to this markdown file.
 
 ## My Runtime Complexity
 
+For my runtime complexity $n$ is representative of the number of cities in
+the input.  
+
+Alright, now that my code is dynamic via memoization, it functions a little
+different. To start I no longer truly explore all $n!$ permutations, instead
+I solve each subproblem in the form of current city, remaining set of
+cities once. Due to memoization we don't need to resolve any single
+subprolem more than once. There are approximately $2^n$ of those. For each
+subproblem I spend $\Theta(n)$ time looping over the up to $n$ subsequent
+cities, and a further $\Theta(n)$ time looking up and generating my
+memoization/distance key pairs, or $2n$. So my algorithm works through $2^n$
+subproblems, where a nested loop does $\Theta(n)$ work over $n$ choices,
+ultimately resulting in a run time complexity of $\Theta(n^2 \cdot 2^n)$  
+
 ## My Memory Complexity
+
+Again, for my memory complexity, $n$ is still representative of the number of
+cities in the input.  
+
+I now use memoization for each subproblem of the form current city, remaining
+set of cities. For each potential pair, I cache one entry. There are
+approximately $2^n$ different subsets of remaining cities, and as many as $n$
+choices for the current city, which totals up to $n \cdot 2^n$ entries which
+will be stored in memoStorage. That means the total space utilized by my
+algorithm is $\Theta(n \cdot 2^n)$.  
 
 ## Sources
 
