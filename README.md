@@ -69,7 +69,14 @@ Again, for my memory complexity, $n$ is still representative of the number of
 cities in the input.  
 
 I now use memoization for each subproblem of the form current city, remaining
-set of cities. For each potential pair, I cache one entry. There are
+set of cities. For each potential pair, I cache one entry. Since the remaining
+set of cities constitutes all subsets of the other $n - 1$ cities, or $2^
+{n - 1}$ cities, and there are $n$ possible current cities, that results in as
+many as $n \cdot 2^{n - 1}$ total entries within emoStorage. As $n \cdot 2^
+{n - 1}$ is aymptotically comparable to $\Theta(n \cdot 2^n)$, the worst case
+memory complexity for my code is $\Theta(n \cdot 2^n)$.  
+
+There are
 approximately $2^n$ different subsets of remaining cities, and as many as $n$
 choices for the current city, which totals up to $n \cdot 2^n$ entries which
 will be stored in memoStorage. That means the total space utilized by my

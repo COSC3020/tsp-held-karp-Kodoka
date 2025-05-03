@@ -44,8 +44,11 @@ function tsp_hk(distance_matrix)
 
     function tspRecursion(currentCity, unvisitedCities, memo)
     {
+        // Sort a copy of the remaining set, so outof order subsets
+        // result in the same joined string.
+        var sorted = unvisitedCities.slice().sort((a, b) => a - b);
         // Generate key for this subpath.
-        var key = currentCity + "|" + unvisitedCities.join(",");
+        var key = currentCity + "|" + sorted.join(",");
 
         // If we've already solved this, return our cached result.
         if(memo[key] != undefined)
